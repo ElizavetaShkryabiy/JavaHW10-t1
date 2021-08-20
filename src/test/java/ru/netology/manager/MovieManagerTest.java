@@ -2,12 +2,22 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movies;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
+
+@ExtendWith(MockitoExtension.class)
 
 public class MovieManagerTest {
-    MovieRepository movieRepository = new MovieRepository();
+    @Mock
+    MovieRepository movieRepository = Mockito.mock(MovieRepository.class);
+    @InjectMocks
     MovieManager manager = new MovieManager(movieRepository);
     private Movies first = new Movies(1, 1, "first", "Url1", "q", 1);
     private Movies second = new Movies(2, 2, "second", "Url2", "w", 1);
@@ -24,23 +34,24 @@ public class MovieManagerTest {
 
     @BeforeEach
     public void setUp() {
-
-        movieRepository.add(first);
-        movieRepository.add(second);
-        movieRepository.add(third);
-        movieRepository.add(forth);
-        movieRepository.add(fifth);
-        movieRepository.add(sixth);
-        movieRepository.add(seventh);
-        movieRepository.add(eighth);
-        movieRepository.add(ninth);
-        movieRepository.add(tenth);
-        movieRepository.add(eleventh);
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        movieRepository.save(forth);
+        movieRepository.save(fifth);
+        movieRepository.save(sixth);
+        movieRepository.save(seventh);
+        movieRepository.save(eighth);
+        movieRepository.save(ninth);
+        movieRepository.save(tenth);
+        movieRepository.save(eleventh);
+        Movies [] returned = new Movies[] {first,second,third,forth,fifth,sixth,seventh,
+                eighth,ninth,tenth,eleventh};
+        doReturn(returned).when(movieRepository).findAll();
     }
 
     @Test
     public void shouldAddMovies() {
-
         Movies[] actual = manager.getAll();
         Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth,
                 seventh, sixth, fifth, forth, third, second, first};

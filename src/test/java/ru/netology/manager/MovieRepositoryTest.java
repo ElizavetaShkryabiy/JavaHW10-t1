@@ -17,23 +17,81 @@ public class MovieRepositoryTest {
 
     @Test
     public void shouldAddMoviesToRepository() {
-        movieRepository.add(first);
-        movieRepository.add(second);
-        movieRepository.add(third);
-        movieRepository.add(forth);
-        movieRepository.add(fifth);
-        Movies[] actual = movieRepository.getAll();
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        movieRepository.save(forth);
+        movieRepository.save(fifth);
+        Movies[] actual = movieRepository.findAll();
         Movies[] expected = new Movies[]{first, second, third, forth, fifth};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldAddNotAllMoviesToRepository() {
-        movieRepository.add(first);
-        movieRepository.add(second);
-        movieRepository.add(third);
-        Movies[] actual = movieRepository.getAll();
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        Movies[] actual = movieRepository.findAll();
         Movies[] expected = new Movies[]{first, second, third};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldFindById() {
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        Movies[] actual = movieRepository.findById(3);
+        Movies[] expected = new Movies[]{third};
+        assertArrayEquals(expected, actual);
+    }
+
+
+//    @Test
+//    public void shouldFindByNotExistingId() {
+//        movieRepository.save(first);
+//        movieRepository.save(second);
+//        movieRepository.save(third);
+//        Movies[] actual = movieRepository.findById(6);
+//        Movies[] expected = new Movies[]{null};
+//        assertArrayEquals(expected, actual);
+//    }
+
+    @Test
+    public void shouldRemoveById() {
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        movieRepository.save(forth);
+        movieRepository.save(fifth);
+        Movies[] actual = movieRepository.removeById(1);
+        Movies[] expected = new Movies[]{second, third, forth, fifth};
+        assertArrayEquals(expected, actual);
+    }
+
+//    @Test
+//    public void shouldRemoveByNotExistingId() {
+//        movieRepository.save(first);
+//        movieRepository.save(second);
+//        movieRepository.save(third);
+//        movieRepository.save(forth);
+//        movieRepository.save(fifth);
+//        Movies[] actual = movieRepository.removeById(6);
+//        Movies[] expected = new Movies[]{null};
+//        assertArrayEquals(expected, actual);
+//    }
+
+    @Test
+    public void shouldRemoveAll() {
+        movieRepository.save(first);
+        movieRepository.save(second);
+        movieRepository.save(third);
+        movieRepository.save(forth);
+        movieRepository.save(fifth);
+        Movies[] actual = movieRepository.removeAll();
+        Movies[] expected = new Movies[]{};
+        assertArrayEquals(expected, actual);
+    }
+
 }

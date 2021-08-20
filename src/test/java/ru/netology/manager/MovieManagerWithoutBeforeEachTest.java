@@ -1,13 +1,23 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movies;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
+
+@ExtendWith(MockitoExtension.class)
+
 
 public class MovieManagerWithoutBeforeEachTest {
-
-        MovieRepository movieRepository = new MovieRepository();
+    @Mock
+    MovieRepository movieRepository = Mockito.mock(MovieRepository.class);
+    @InjectMocks
         MovieManager manager = new MovieManager(movieRepository);
         private Movies first = new Movies(1, 1, "first", "Url1", "q", 1);
         private Movies second = new Movies(2, 2, "second", "Url2", "w", 1);
@@ -19,11 +29,13 @@ public class MovieManagerWithoutBeforeEachTest {
 
         @Test
         public void shouldShowLast10Movies() {
-            movieRepository.add(first);
-            movieRepository.add(second);
-            movieRepository.add(third);
-            movieRepository.add(forth);
-            movieRepository.add(fifth);
+            movieRepository.save(first);
+            movieRepository.save(second);
+            movieRepository.save(third);
+            movieRepository.save(forth);
+            movieRepository.save(fifth);
+            Movies [] returned = new Movies[] {first,second,third,forth,fifth};
+            doReturn(returned).when(movieRepository).findAll();
 
             Movies[] actual = manager.getLast();
             Movies[] expected = new Movies[]{fifth, forth, third, second,first};
@@ -33,11 +45,13 @@ public class MovieManagerWithoutBeforeEachTest {
 
         @Test
        public void shouldShowLast11Movies() {
-            movieRepository.add(first);
-            movieRepository.add(second);
-            movieRepository.add(third);
-            movieRepository.add(forth);
-            movieRepository.add(fifth);
+            movieRepository.save(first);
+            movieRepository.save(second);
+            movieRepository.save(third);
+            movieRepository.save(forth);
+            movieRepository.save(fifth);
+            Movies [] returned = new Movies[] {first,second,third,forth,fifth};
+            doReturn(returned).when(movieRepository).findAll();
 
             Movies[] actual = manager.getLast(11);
             Movies[] expected = new Movies[]{fifth, forth, third, second, first};

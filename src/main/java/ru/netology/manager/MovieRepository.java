@@ -6,7 +6,7 @@ public class MovieRepository {
 
     private Movies[] movies = new Movies[0];
 
-    public void add(Movies item) {
+    public void save(Movies item) {
 
         int length = movies.length + 1;
         Movies[] tmp = new Movies[length];
@@ -19,8 +19,42 @@ public class MovieRepository {
         movies = tmp;
     }
 
-    public Movies[] getAll() {
+    public Movies[] findAll() {
         return movies;
+    }
+
+    public Movies[] findById(int id) {
+        int length = 1;
+        Movies[] tmp = new Movies[length];
+        int index = 0;
+        for (Movies movie : movies) {
+            if (movie.getId() == id) {
+                tmp[index] = movie;
+                index++;
+            }
+            movies = tmp;
+        }
+        return movies;
+
+
+    }
+
+    public Movies[] removeById(int id) {
+        int length = movies.length - 1;
+        Movies[] tmp = new Movies[length];
+        int index = 0;
+        for (Movies movie : movies) {
+            if (movie.getId() != id) {
+                tmp[index] = movie;
+                index++;
+            }
+        }
+        return movies = tmp;
+    }
+
+    public Movies[] removeAll() {
+        Movies[] empty = new Movies[0];
+        return empty;
     }
 
 }

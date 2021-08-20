@@ -15,7 +15,7 @@ public class MovieManager {
 
     public Movies[] getLast() {
         int resultLength = 10;
-        Movies[] movies = repository.getAll();
+        Movies[] movies = repository.findAll();
         Movies[] result = new Movies[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = result.length - i - 1;
@@ -36,7 +36,7 @@ public class MovieManager {
     }
 
     public Movies[] getLast(int resultLength) {
-        Movies[] movies = repository.getAll();
+        Movies[] movies = repository.findAll();
         Movies[] result = new Movies[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = result.length - i - 1;
@@ -57,7 +57,7 @@ public class MovieManager {
     }
 
     public Movies[] getAll() {
-        Movies[] movies = repository.getAll();
+        Movies[] movies = repository.findAll();
         Movies[] result = new Movies[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = result.length - i - 1;
@@ -65,5 +65,22 @@ public class MovieManager {
         }
         return result;
     }
+
+    public void add(Movies item) {
+        repository.save(item);
+    }
+
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+
+    public void removeAll(){
+        repository.removeAll() ;
+    }
+
+
+
+
+
 
 }

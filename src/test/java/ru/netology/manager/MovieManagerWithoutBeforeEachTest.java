@@ -50,10 +50,12 @@ public class MovieManagerWithoutBeforeEachTest {
             movieRepository.save(third);
             movieRepository.save(forth);
             movieRepository.save(fifth);
+
+            MovieManager manager = new MovieManager(movieRepository, 11);
             Movie [] returned = new Movie[] {first,second,third,forth,fifth};
             doReturn(returned).when(movieRepository).findAll();
 
-            Movie[] actual = manager.getLast(11);
+            Movie[] actual = manager.getLast();
             Movie[] expected = new Movie[]{fifth, forth, third, second, first};
 
             assertArrayEquals(expected, actual);

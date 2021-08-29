@@ -9,7 +9,7 @@ public class MovieManager {
 
     public MovieManager(MovieRepository repository, int resultLength) {
         this.repository = repository;
-        resultLength = this.resultLength;
+        this.resultLength = resultLength;
     }
 
     public MovieManager(MovieRepository repository) {
@@ -19,7 +19,7 @@ public class MovieManager {
 
 
     public Movie[] getLast() {
-        int resultLength = 10;
+
         Movie[] movies = repository.findAll();
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
@@ -40,26 +40,6 @@ public class MovieManager {
         return last;
     }
 
-//    public Movie[] getLast(int resultLength) {
-//        Movie[] movies = repository.findAll();
-//        Movie[] result = new Movie[movies.length];
-//        for (int i = 0; i < result.length; i++) {
-//            int index = result.length - i - 1;
-//            result[i] = movies[index];
-//        }
-//        int length;
-//        if (result.length < resultLength) {
-//            length = result.length;
-//        } else {
-//            length = resultLength;
-//        }
-//        Movie[] last = new Movie[length];
-//        for (int i = 0; i < last.length; i++) {
-//            last[i] = result[i];
-//        }
-//
-//        return last;
-//    }
 
     public Movie[] getAll() {
         Movie[] movies = repository.findAll();

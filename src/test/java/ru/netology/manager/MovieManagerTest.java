@@ -52,6 +52,7 @@ public class MovieManagerTest {
 
     @Test
     public void shouldAddMovies() {
+
         Movie[] actual = manager.getAll();
         Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth,
                 seventh, sixth, fifth, forth, third, second, first};
@@ -70,7 +71,9 @@ public class MovieManagerTest {
     @Test
     public void shouldShowLast11Movies() {
 
-        Movie[] actual = manager.getLast(11);
+        MovieManager manager = new MovieManager(movieRepository, 11);
+
+        Movie[] actual = manager.getLast();
         Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
 
         assertArrayEquals(expected, actual);
@@ -78,12 +81,21 @@ public class MovieManagerTest {
 
     @Test
     public void shouldShowLast5Movies() {
-
-        Movie[] actual = manager.getLast(5);
+        MovieManager manager = new MovieManager(movieRepository, 5);
+        Movie[] actual = manager.getLast();
         Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh};
 
         assertArrayEquals(expected, actual);
     }
 
+
+    @Test
+    public void shouldShowLast10MoviesWithResultLengh() {
+        MovieManager manager = new MovieManager(movieRepository, 10);
+        Movie[] actual = manager.getLast();
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second};
+
+        assertArrayEquals(expected, actual);
+    }
 
 }

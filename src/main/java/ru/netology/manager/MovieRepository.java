@@ -1,15 +1,15 @@
 package ru.netology.manager;
 
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 public class MovieRepository {
 
-    private Movies[] movies = new Movies[0];
+    private Movie[] movies = new Movie[0];
 
-    public void add(Movies item) {
+    public void add(Movie item) {
 
         int length = movies.length + 1;
-        Movies[] tmp = new Movies[length];
+        Movie[] tmp = new Movie[length];
 
         for (int i = 0; i < movies.length; i++) {
             tmp[i] = movies[i];
@@ -19,7 +19,7 @@ public class MovieRepository {
         movies = tmp;
     }
 
-    public Movies[] getAll() {
+    public Movie[] getAll() {
         return movies;
     }
 

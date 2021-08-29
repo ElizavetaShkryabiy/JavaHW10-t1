@@ -1,7 +1,7 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class MovieRepositoryTest {
     MovieRepository movieRepository = new MovieRepository();
     MovieManager manager = new MovieManager(movieRepository);
-    private Movies first = new Movies(1, 1, "first", "Url1", "q", 1);
-    private Movies second = new Movies(2, 2, "second", "Url2", "w", 1);
-    private Movies third = new Movies(3, 3, "third", "Url3", "e", 2);
-    private Movies forth = new Movies(4, 4, "forth", "Url4", "w3", 1);
-    private Movies fifth = new Movies(5, 5, "fifth", "Url5", "s", 1);
+    private Movie first = new Movie(1, 1, "first", "Url1", "q", 1);
+    private Movie second = new Movie(2, 2, "second", "Url2", "w", 1);
+    private Movie third = new Movie(3, 3, "third", "Url3", "e", 2);
+    private Movie forth = new Movie(4, 4, "forth", "Url4", "w3", 1);
+    private Movie fifth = new Movie(5, 5, "fifth", "Url5", "s", 1);
 
     @Test
     public void shouldAddMoviesToRepository() {
@@ -22,8 +22,8 @@ public class MovieRepositoryTest {
         movieRepository.add(third);
         movieRepository.add(forth);
         movieRepository.add(fifth);
-        Movies[] actual = movieRepository.getAll();
-        Movies[] expected = new Movies[]{first, second, third, forth, fifth};
+        Movie[] actual = movieRepository.getAll();
+        Movie[] expected = new Movie[]{first, second, third, forth, fifth};
         assertArrayEquals(expected, actual);
     }
 
@@ -32,8 +32,8 @@ public class MovieRepositoryTest {
         movieRepository.add(first);
         movieRepository.add(second);
         movieRepository.add(third);
-        Movies[] actual = movieRepository.getAll();
-        Movies[] expected = new Movies[]{first, second, third};
+        Movie[] actual = movieRepository.getAll();
+        Movie[] expected = new Movie[]{first, second, third};
         assertArrayEquals(expected, actual);
     }
 }

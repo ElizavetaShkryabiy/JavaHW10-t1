@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.doReturn;
@@ -19,17 +19,17 @@ public class MovieManagerTest {
     MovieRepository movieRepository = Mockito.mock(MovieRepository.class);
     @InjectMocks
     MovieManager manager = new MovieManager(movieRepository);
-    private Movies first = new Movies(1, 1, "first", "Url1", "q", 1);
-    private Movies second = new Movies(2, 2, "second", "Url2", "w", 1);
-    private Movies third = new Movies(3, 3, "third", "Url3", "e", 2);
-    private Movies forth = new Movies(4, 4, "forth", "Url4", "w3", 1);
-    private Movies fifth = new Movies(5, 5, "fifth", "Url5", "s", 1);
-    private Movies sixth = new Movies(6, 6, "sixth", "Url6", "r", 3);
-    private Movies seventh = new Movies(7, 7, "seventh", "Url7", "t", 4);
-    private Movies eighth = new Movies(8, 8, "eighth", "Url8", "g", 1);
-    private Movies ninth = new Movies(9, 9, "ninth", "Url9", "b", 1);
-    private Movies tenth = new Movies(10, 10, "tenth", "Url10", "q", 6);
-    private Movies eleventh = new Movies(11, 11, "eleventh", "Url11", "q", 9);
+    private Movie first = new Movie(1, 1, "first", "Url1", "q", 1);
+    private Movie second = new Movie(2, 2, "second", "Url2", "w", 1);
+    private Movie third = new Movie(3, 3, "third", "Url3", "e", 2);
+    private Movie forth = new Movie(4, 4, "forth", "Url4", "w3", 1);
+    private Movie fifth = new Movie(5, 5, "fifth", "Url5", "s", 1);
+    private Movie sixth = new Movie(6, 6, "sixth", "Url6", "r", 3);
+    private Movie seventh = new Movie(7, 7, "seventh", "Url7", "t", 4);
+    private Movie eighth = new Movie(8, 8, "eighth", "Url8", "g", 1);
+    private Movie ninth = new Movie(9, 9, "ninth", "Url9", "b", 1);
+    private Movie tenth = new Movie(10, 10, "tenth", "Url10", "q", 6);
+    private Movie eleventh = new Movie(11, 11, "eleventh", "Url11", "q", 9);
 
 
     @BeforeEach
@@ -45,15 +45,15 @@ public class MovieManagerTest {
         movieRepository.save(ninth);
         movieRepository.save(tenth);
         movieRepository.save(eleventh);
-        Movies [] returned = new Movies[] {first,second,third,forth,fifth,sixth,seventh,
+        Movie [] returned = new Movie[] {first,second,third,forth,fifth,sixth,seventh,
                 eighth,ninth,tenth,eleventh};
         doReturn(returned).when(movieRepository).findAll();
     }
 
     @Test
     public void shouldAddMovies() {
-        Movies[] actual = manager.getAll();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth,
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth,
                 seventh, sixth, fifth, forth, third, second, first};
         assertArrayEquals(expected, actual);
     }
@@ -61,8 +61,8 @@ public class MovieManagerTest {
     @Test
     public void shouldShowLast10Movies() {
 
-        Movies[] actual = manager.getLast();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second};
+        Movie[] actual = manager.getLast();
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second};
 
         assertArrayEquals(expected, actual);
     }
@@ -70,8 +70,8 @@ public class MovieManagerTest {
     @Test
     public void shouldShowLast11Movies() {
 
-        Movies[] actual = manager.getLast(11);
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
+        Movie[] actual = manager.getLast(11);
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }
@@ -79,8 +79,8 @@ public class MovieManagerTest {
     @Test
     public void shouldShowLast5Movies() {
 
-        Movies[] actual = manager.getLast(5);
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh};
+        Movie[] actual = manager.getLast(5);
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh};
 
         assertArrayEquals(expected, actual);
     }

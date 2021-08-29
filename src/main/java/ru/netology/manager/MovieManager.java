@@ -1,22 +1,27 @@
 package ru.netology.manager;
 
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 
 public class MovieManager {
     private MovieRepository repository;
+    private int resultLength;
+
+    public MovieManager(MovieRepository repository, int resultLength) {
+        this.repository = repository;
+        resultLength = this.resultLength;
+    }
 
     public MovieManager(MovieRepository repository) {
         this.repository = repository;
+        resultLength = 10;
     }
 
-    private int resultLength;
 
-
-    public Movies[] getLast() {
+    public Movie[] getLast() {
         int resultLength = 10;
-        Movies[] movies = repository.findAll();
-        Movies[] result = new Movies[movies.length];
+        Movie[] movies = repository.findAll();
+        Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = result.length - i - 1;
             result[i] = movies[index];
@@ -27,7 +32,7 @@ public class MovieManager {
         } else {
             length = resultLength;
         }
-        Movies[] last = new Movies[length];
+        Movie[] last = new Movie[length];
         for (int i = 0; i < last.length; i++) {
             last[i] = result[i];
         }
@@ -35,30 +40,30 @@ public class MovieManager {
         return last;
     }
 
-    public Movies[] getLast(int resultLength) {
-        Movies[] movies = repository.findAll();
-        Movies[] result = new Movies[movies.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = result.length - i - 1;
-            result[i] = movies[index];
-        }
-        int length;
-        if (result.length < resultLength) {
-            length = result.length;
-        } else {
-            length = resultLength;
-        }
-        Movies[] last = new Movies[length];
-        for (int i = 0; i < last.length; i++) {
-            last[i] = result[i];
-        }
+//    public Movie[] getLast(int resultLength) {
+//        Movie[] movies = repository.findAll();
+//        Movie[] result = new Movie[movies.length];
+//        for (int i = 0; i < result.length; i++) {
+//            int index = result.length - i - 1;
+//            result[i] = movies[index];
+//        }
+//        int length;
+//        if (result.length < resultLength) {
+//            length = result.length;
+//        } else {
+//            length = resultLength;
+//        }
+//        Movie[] last = new Movie[length];
+//        for (int i = 0; i < last.length; i++) {
+//            last[i] = result[i];
+//        }
+//
+//        return last;
+//    }
 
-        return last;
-    }
-
-    public Movies[] getAll() {
-        Movies[] movies = repository.findAll();
-        Movies[] result = new Movies[movies.length];
+    public Movie[] getAll() {
+        Movie[] movies = repository.findAll();
+        Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             int index = result.length - i - 1;
             result[i] = movies[index];
@@ -66,7 +71,7 @@ public class MovieManager {
         return result;
     }
 
-    public void add(Movies item) {
+    public void add(Movie item) {
         repository.save(item);
     }
 

@@ -1,15 +1,15 @@
 package ru.netology.manager;
 
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 public class MovieRepository {
 
-    private Movies[] movies = new Movies[0];
+    private Movie[] movies = new Movie[0];
 
-    public void save(Movies item) {
+    public void save(Movie item) {
 
         int length = movies.length + 1;
-        Movies[] tmp = new Movies[length];
+        Movie[] tmp = new Movie[length];
 
         for (int i = 0; i < movies.length; i++) {
             tmp[i] = movies[i];
@@ -19,15 +19,15 @@ public class MovieRepository {
         movies = tmp;
     }
 
-    public Movies[] findAll() {
+    public Movie[] findAll() {
         return movies;
     }
 
-    public Movies[] findById(int id) {
+    public Movie[] findById(int id) {
         int length = 1;
-        Movies[] tmp = new Movies[length];
+        Movie[] tmp = new Movie[length];
         int index = 0;
-        for (Movies movie : movies) {
+        for (Movie movie : movies) {
             if (movie.getId() == id) {
                 tmp[index] = movie;
                 index++;
@@ -39,11 +39,11 @@ public class MovieRepository {
 
     }
 
-    public Movies[] removeById(int id) {
+    public Movie[] removeById(int id) {
         int length = movies.length - 1;
-        Movies[] tmp = new Movies[length];
+        Movie[] tmp = new Movie[length];
         int index = 0;
-        for (Movies movie : movies) {
+        for (Movie movie : movies) {
             if (movie.getId() != id) {
                 tmp[index] = movie;
                 index++;
@@ -52,8 +52,8 @@ public class MovieRepository {
         return movies = tmp;
     }
 
-    public Movies[] removeAll() {
-        Movies[] empty = new Movies[0];
+    public Movie[] removeAll() {
+        Movie[] empty = new Movie[0];
         return empty;
     }
 

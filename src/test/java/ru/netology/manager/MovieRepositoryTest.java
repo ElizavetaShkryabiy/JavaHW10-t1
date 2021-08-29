@@ -1,7 +1,7 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Movies;
+import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class MovieRepositoryTest {
     MovieRepository movieRepository = new MovieRepository();
     MovieManager manager = new MovieManager(movieRepository);
-    private Movies first = new Movies(1, 1, "first", "Url1", "q", 1);
-    private Movies second = new Movies(2, 2, "second", "Url2", "w", 1);
-    private Movies third = new Movies(3, 3, "third", "Url3", "e", 2);
-    private Movies forth = new Movies(4, 4, "forth", "Url4", "w3", 1);
-    private Movies fifth = new Movies(5, 5, "fifth", "Url5", "s", 1);
+    private Movie first = new Movie(1, 1, "first", "Url1", "q", 1);
+    private Movie second = new Movie(2, 2, "second", "Url2", "w", 1);
+    private Movie third = new Movie(3, 3, "third", "Url3", "e", 2);
+    private Movie forth = new Movie(4, 4, "forth", "Url4", "w3", 1);
+    private Movie fifth = new Movie(5, 5, "fifth", "Url5", "s", 1);
 
     @Test
     public void shouldAddMoviesToRepository() {
@@ -22,8 +22,8 @@ public class MovieRepositoryTest {
         movieRepository.save(third);
         movieRepository.save(forth);
         movieRepository.save(fifth);
-        Movies[] actual = movieRepository.findAll();
-        Movies[] expected = new Movies[]{first, second, third, forth, fifth};
+        Movie[] actual = movieRepository.findAll();
+        Movie[] expected = new Movie[]{first, second, third, forth, fifth};
         assertArrayEquals(expected, actual);
     }
 
@@ -32,8 +32,8 @@ public class MovieRepositoryTest {
         movieRepository.save(first);
         movieRepository.save(second);
         movieRepository.save(third);
-        Movies[] actual = movieRepository.findAll();
-        Movies[] expected = new Movies[]{first, second, third};
+        Movie[] actual = movieRepository.findAll();
+        Movie[] expected = new Movie[]{first, second, third};
         assertArrayEquals(expected, actual);
     }
 
@@ -42,8 +42,8 @@ public class MovieRepositoryTest {
         movieRepository.save(first);
         movieRepository.save(second);
         movieRepository.save(third);
-        Movies[] actual = movieRepository.findById(3);
-        Movies[] expected = new Movies[]{third};
+        Movie[] actual = movieRepository.findById(3);
+        Movie[] expected = new Movie[]{third};
         assertArrayEquals(expected, actual);
     }
 
@@ -53,8 +53,8 @@ public class MovieRepositoryTest {
 //        movieRepository.save(first);
 //        movieRepository.save(second);
 //        movieRepository.save(third);
-//        Movies[] actual = movieRepository.findById(6);
-//        Movies[] expected = new Movies[]{null};
+//        Movie[] actual = movieRepository.findById(6);
+//        Movie[] expected = new Movie[]{null};
 //        assertArrayEquals(expected, actual);
 //    }
 
@@ -65,8 +65,8 @@ public class MovieRepositoryTest {
         movieRepository.save(third);
         movieRepository.save(forth);
         movieRepository.save(fifth);
-        Movies[] actual = movieRepository.removeById(1);
-        Movies[] expected = new Movies[]{second, third, forth, fifth};
+        Movie[] actual = movieRepository.removeById(1);
+        Movie[] expected = new Movie[]{second, third, forth, fifth};
         assertArrayEquals(expected, actual);
     }
 
@@ -77,8 +77,8 @@ public class MovieRepositoryTest {
 //        movieRepository.save(third);
 //        movieRepository.save(forth);
 //        movieRepository.save(fifth);
-//        Movies[] actual = movieRepository.removeById(6);
-//        Movies[] expected = new Movies[]{null};
+//        Movie[] actual = movieRepository.removeById(6);
+//        Movie[] expected = new Movie[]{null};
 //        assertArrayEquals(expected, actual);
 //    }
 
@@ -89,8 +89,8 @@ public class MovieRepositoryTest {
         movieRepository.save(third);
         movieRepository.save(forth);
         movieRepository.save(fifth);
-        Movies[] actual = movieRepository.removeAll();
-        Movies[] expected = new Movies[]{};
+        Movie[] actual = movieRepository.removeAll();
+        Movie[] expected = new Movie[]{};
         assertArrayEquals(expected, actual);
     }
 
